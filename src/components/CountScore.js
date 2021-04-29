@@ -28,14 +28,14 @@ function CountScore() {
 
 
     //   click event listener to update score and shuffle cards on click
-      const clicked = (id) => {
+      const clicked = () => {
        
         setScore(score + 1)
         
         
-        let newCard = { ...cards[id.event]};
+        let newCard = { ...cards[1]};
         newCard.cards++
-        cards[id.event] = newCard
+        cards[1] = newCard
         setClickedCard(clickedCard.concat(newCard))
         shuffle(shuffCards)
         console.log(newCard)

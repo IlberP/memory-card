@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import MemoryCards from './MemoryCards'
-// import CardImg from './CardImg'
+import CardImg from './CardImg'
 
 function CountScore() {
 
@@ -28,16 +28,16 @@ function CountScore() {
 
 
     //   click event listener to update score and shuffle cards on click
-      const clicked = () => {
+      const clicked = (id) => {
        
         setScore(score + 1)
         
         
-        let newCard = { ...cards[1]};
+        let newCard = { ...cards[id]};
         newCard.cards++
-        cards[1] = newCard
+        cards[id] = newCard
         setClickedCard(clickedCard.concat(newCard))
-        shuffle(shuffCards)
+        setCards(shuffle(shuffCards))
         console.log(newCard)
         
         console.log(clickedCard)
@@ -48,46 +48,16 @@ function CountScore() {
         
     }
 
-    // const ex = () => {
-    //     clicked([])
-    // }
-        // loseGame(score = startScore)
-
-
-        // if(highScore !== null){
-        //     if(score > highScore){
-        //         setHighScore(highScore = score)
-                
-        //     }
-        // }
-        
     
-
-    // const example = () => {
-    //     const newClick = [...cards]
-    //     let newCard = { ...newClick[1]};
-    //     newCard.cards++
-    //     newClick[1] = newCard
-    //     setClickedCard(newClick)
-    //     console.log(newClick)
-    // }
-
-    // const loseGame = () => {
-    //     if(clickedCard.includes(showCards)) {
-           
-    //         shuffle(showCards)
-    //         clickedCard = []
-    //         console.log(clickedCard)
-
-    //     }
-    // }
 
 
     return (
         <div>
+            <div>{cards.map((value, id) => 
+            { return <CardImg key={id} info={value} clicked={clicked}/> })}</div>
             <div>Score: {score}</div>
             <div>High Score: {highScore}</div>
-            <div>{cards.map(card => <p key={card.id} onClick={clicked}>{card.image}</p>)}</div> 
+            {/* <div>{cards.map(card => <p key={card.id} onClick={ex}>{card.image}</p>)}</div>  */}
         </div>
     )
 }
